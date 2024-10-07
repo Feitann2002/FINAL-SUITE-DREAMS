@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+:root {
+  --header-height: 3.5rem;
+  --main-color: #213A57;
+  --light-color: #0B6477;
+  --hover-color: #80ED99;
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* --------------------------------------------- Navbar Design --------------------------------------------- */
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--main-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+.nav {
+  height: var(--header-height);
+}
+
+.navLogo,
+.navBurger,
+.navClose {
+  color: var(--white-color);
+}
+
+.navData {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLogo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-weight: var(--font-semi-bold);
+}
+
+.navLogo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.navToggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.navBurger,
+.navClose {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.navClose {
+  opacity: 0;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .navMenu {
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .navMenu::-webkit-scrollbar {
+    width: 0;
+  }
+  .navList {
+    background-color: var(--main-color);
+    padding-top: 1rem;
+  }
+}
+
+.navLink {
+  color: var(--white-color);
+  background-color: var(--main-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .3s;
+  position: relative;
+}
+
+.navLink:hover {
+  background-color: var(--light-color);
+  transform: scale(1.05);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--hover-color);
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+.navLink:hover {
+  color: var(--white-color);
+}
+
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+.show-icon .navBurger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.show-icon .navClose {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* ------------------------------------------------ DROPDOWN ------------------------------------------------ */
+.dropdownItem {
+  cursor: pointer;
+}
+
+.dropdownArrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdownLink,
+.dropdownSublink {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  color: var(--white-color);
+  background-color: var(--light-color);
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s, transform .3s;
+}
+
+.dropdownLink i,
+.dropdownSublink i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.dropdownLink:hover,
+.dropdownSublink:hover {
+  background-color: var(--main-color);
+  transform: translateX(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdownMenu,
+.dropdownSubmenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out, opacity .3s ease;
+}
+
+.dropdownItem:hover .dropdownMenu,
+.dropdownSubitem:hover > .dropdownSubmenu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+.dropdownItem:hover .dropdownArrow {
+  transform: rotate(180deg);
+}
+
+.dropdownAdd {
+  margin-left: auto;
+}
+
+.dropdownSublink {
+  background-color: var(--light-color);
+}
+
+/* ------------------------------------------------ Responsive Design ---------------------------------------------- */
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .navLink {
+    padding-inline: 1rem;
+  }
+}
+
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .navToggle {
+    display: none;
+  }
+  .navList {
+    height: 100%;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .navLink {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .navLink:hover {
+    background-color: transparent;
+  }
+
+  .dropdownItem,
+  .dropdownSubitem {
+    position: relative;
+  }
+
+  .dropdownMenu,
+  .dropdownSubmenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdownLink,
+  .dropdownSublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdownSubitem .dropdownLink {
+    padding-inline: 1rem;
+  }
+
+  .dropdownSubmenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  .dropdownItem:hover .dropdownMenu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+  .dropdownSubitem:hover > .dropdownSubmenu {
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------- */

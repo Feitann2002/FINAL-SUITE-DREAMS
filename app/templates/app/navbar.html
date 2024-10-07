@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Style CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+    <title>Navbar</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="navData">
+               <a href="#" class="navLogo"><i class="ri-moon-line"></i>Suite Dreams</a>
+
+               <div class="navToggle" id="nav-toggle">
+                  <i class="ri-menu-line navBurger"></i>
+                  <i class="ri-close-line navClose"></i>
+               </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="navMenu" id="nav-menu">
+               <ul class="navList">
+                  <li><a href="#" class="navLink">Home</a></li>
+                  <li><a href="#" class="navLink">Company</a></li>
+                  <li><a href="#" class="navLink">Accommodations</a></li>
+                  <li><a href="#" class="navLink">Contact</a></li>
+
+                  <!-- "MORE" Dropdown Menu -->
+                  <li class="dropdownItem">
+                      <div class="navLink">More<i class="ri-arrow-down-s-line dropdownArrow"></i></div>
+                     <ul class="dropdownMenu">
+                         <li><a href="#" class="dropdownLink"><i class="ri-question-mark"></i>FAQs</a></li>
+                         <li><a href="#" class="dropdownLink"><i class="ri-lock-line"></i>Privacy Policy</a></li>
+                         <li><a href="#" class="dropdownLink"><i class="ri-message-3-line"></i>Terms and Conditions</a></li>
+                         <li><a href="#" class="dropdownLink"><i class="ri-feedback-line"></i>Feedback & Reviews</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Javascript -->
+    <script src="{% static '/js/navbar.js' %}"></script>
+</body>
+</html>
