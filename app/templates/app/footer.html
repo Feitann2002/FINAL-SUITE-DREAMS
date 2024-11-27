@@ -1,0 +1,61 @@
+{% load static %}
+<link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/footer.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+<title>Footer - Suite Dreams</title>
+
+{% block content %}
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <h1 class="hotel-name">Suite Dreams <i class="ri-moon-fill"></i></h1>
+            <p class="footer-description">
+                Experience luxury, and comfort. Let your dreams come true at Suite Dreams Hotel.
+            </p>
+            <div class="socials">
+                <a href="https://web.facebook.com/Feitann2002" class="social-icon"><i class="ri-facebook-circle-fill"></i></a>
+                <a href="https://www.tiktok.com/@coyxcrown?_t=8rBKL5qa8fv&_r=1" class="social-icon"><i class="ri-tiktok-fill"></i></a>
+                <a href="https://github.com/Feitann2002" class="social-icon"><i class="ri-github-fill"></i></a>
+                <a href="mailto:feitann2002@gmail.com" class="social-icon"><i class="ri-mail-line"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h2><i class="ri-service-fill"></i> Our Services</h2>
+            <ul>
+                <li>Luxury Rooms</li>
+                <li>Fine Dining</li>
+                <li>Fitness Gym</li>
+                <li>Event Spaces</li>
+                <li>Exclusive Packages</li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h2><i class="ri-links-fill"></i> Quick Links</h2>
+            <ul>
+                <li><a href="/faqs">FAQ</a></li>
+                <li><a href="#">Rooms</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h2><i class="ri-phone-fill"></i> Contact Us</h2>
+            <ul>
+                <li>123, Suite Dreams Ave</li>
+                <li>Dream City, Cavite</li>
+                <li>Philippines</li>
+                <li>63+ 9123456789</li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2024 Suite Dreams Hotel All Rights Reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

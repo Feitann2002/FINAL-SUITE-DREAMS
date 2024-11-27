@@ -1,0 +1,56 @@
+{% load static %}
+<link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static '/css/faq.css' %}">
+<title>FAQs</title>
+{% include 'app/navbar.html' %}
+{% block content %}
+    <div class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-item">
+            <input type="radio" name="faq-accordion" id="faq1">
+            <label for="faq1">
+                <h2>01</h2>
+                <h3>How can I make a reservation?</h3>
+            </label>
+            <div class="faq-content">
+                <p>You can make a reservation through our website or by calling our front desk directly.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="radio" name="faq-accordion" id="faq2">
+            <label for="faq2">
+                <h2>02</h2>
+                <h3>What amenities are available at the hotel?</h3>
+            </label>
+            <div class="faq-content">
+                <p>Our hotel offers amenities such as free Wi-Fi, a fitness center, swimming pool,
+                    complimentary breakfast, and room service. For a full list, please refer to our website.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="radio" name="faq-accordion" id="faq3">
+            <label for="faq3">
+                <h2>03</h2>
+                <h3>How can I contact support?</h3>
+            </label>
+            <div class="faq-content">
+                <p>You can contact support via email or phone listed on our contact page.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="radio" name="faq-accordion" id="faq4">
+            <label for="faq4">
+                <h2>04</h2>
+                <h3>Where can I find pricing information?</h3>
+            </label>
+            <div class="faq-content">
+                <p>Pricing information is available on our pricing page.</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

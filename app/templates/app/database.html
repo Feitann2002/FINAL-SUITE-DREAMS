@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/database.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <title>Admin Dashboard</title>
+</head>
+<body onload="showDashboard()">
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Dashboard <i class="ri-dashboard-fill"></i></h2>
+            <div class="profile-container">
+                <img src="{% static '/images/about/SuiteDreams.png' %}" alt="Profile Picture" class="profile-picture">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showSection('dashboard')"><i class="ri-dashboard-fill"></i> Dashboard</a></li>
+                    <li><a href="#" onclick="showSection('admins')"><i class="ri-admin-fill"></i> Admins</a></li>
+                    <li><a href="#" onclick="showSection('users')"><i class="ri-user-fill"></i> Users</a></li>
+                    <li><a href="#" onclick="showSection('rooms')"><i class="ri-home-2-fill"></i> Rooms</a></li>
+                    <li><a href="#" onclick="showSection('appointments')"><i class="ri-book-fill"></i> Appointments</a></li>
+                    <li><a href="#" onclick="showSection('offers')"><i class="ri-box-3-fill"></i> Special Offers</a></li>
+                    <li><a href="#" onclick="showSection('feedbacks')"><i class="ri-feedback-fill"></i> Feedbacks</a></li>
+                </ul>
+            </nav>
+            <div class="logout-button">
+                <a href="/" class="logout" onclick="return confirmLogout()">Logout</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h1>Welcome to the Admin Dashboard</h1>
+            </header>
+            <section id="dashboard" class="content-section" style="display: none;">
+                <h2>Dashboard Overview</h2>
+                <div class="cards">
+                    <div class="card"><h3>Total Admins</h3><p>{{ admins|length }}</p></div>
+                    <div class="card"><h3>Total Users</h3><p>{{ users|length }}</p></div>
+                    <div class="card"><h3>Total Rooms</h3><p>{{ rooms|length }}</p></div>
+                    <div class="card"><h3>Total Offers</h3><p>{{ offers|length }}</p></div>
+                </div>
+                <div class="additional-cards">
+                    <div class="card feature-suggestion">
+                        <h3>Activity Log</h3>
+                        <p>Recent activities and updates will be displayed here...</p>
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    </div>
+                    <div class="card recent-activities">
+                        <h3>New Users</h3>
+                        <table>
+                            <thead>
+                                <th>Name</th>
+                                <th>Date Created</th>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.created_at}}</td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section id="admins" class="content-section" style="display: none;">
+                <h2>Admins List</h2>
+                <div class="search-container">
+                    <input type="text" id="adminSearch" placeholder="Search Admins..." onkeyup="searchAdmins()">
+                    <button class="add-button" onclick="window.location.href='{% url 'create_admin' %}'"><i class="ri-add-box-line"></i></button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                        {% for admin in admins %}
+                        <tr>
+                            <td>{{ admin.id }}</td>
+                            <td>{{ admin.firstname }}</td>
+                            <td>{{ admin.lastname }}</td>
+                            <td>{{ admin.email }}</td>
+                            <td>{{ admin.username }}</td>
+                            <td>{{ admin.password }}</td>
+                            <td>
+                                <button class="edit-button" onclick="window.location.href='{% url 'admin_update' admin.pk %}'"><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href='{% url 'admin_delete' admin.pk %}'"><i class="ri-delete-bin-line"></i></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+            <section id="users" class="content-section" style="display: none;">
+                <h2>Users List</h2>
+                <div class="search-container">
+                    <input type="text" id="userSearch" placeholder="Search Users..." onkeyup="searchUsers()">
+                    <button class="add-button" onclick="addUser()"><i class="ri-add-box-line"></i></button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.password }}</td>
+                            <td>
+                                <button class="edit-button" onclick="editUser({{ user.id }})"><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="deleteUser({{ user.id }})"><i class="ri-delete-bin-line"></i></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+            <section id="rooms" class="content-section" style="display: none;">
+                <h2>Rooms List</h2>
+                <div class="search-container">
+                    <input type="text" id="roomSearch" placeholder="Search Rooms..." onkeyup="searchRooms()">
+                    <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Room Number</th>
+                            <th>Room Type</th>
+                            <th>Capacity</th>
+                            <th>Price per Hour</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="roomTableBody">
+                        {% for room in rooms %}
+                        <tr>
+                            <td>{{ room.id }}</td>
+                            <td>{{ room.room_number }}</td>
+                            <td>{{ room.room_type }}</td>
+                            <td>{{ room.capacity }}</td>
+                            <td>₱ {{ room.price_per_hour|floatformat:2 }}</td>
+                            <td>
+                                <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">No rooms found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+            <section id="appointments" class="content-section" style="display: none;">
+                <h2>Appointments List</h2>
+                <div class="search-container">
+                    <input type="text" id="appointmentSearch" placeholder="Search Appointments..." onkeyup="searchAppointments()">
+                    <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Name</th>
+                            <th>Room</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Total Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentTableBody">
+                        {% for appointment in appointments %}
+                        <tr>
+                            <td>{{ appointment.id }}</td>
+                            <td>{{ appointment.user.name }}</td>
+                            <td>{{ appointment.room.room_number }} - {{ appointment.room.room_type }}</td>
+                            <td>{{ appointment.start_date }}</td>
+                            <td>{{ appointment.end_date }}</td>
+                            <td>₱ {{ appointment.total_cost|floatformat:2 }}</td>
+                            <td>
+                                <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7">No appointments found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+            <section id="offers" class="content-section" style="display: none;">
+                <h2>Special Offers</h2>
+                <div class="search-container">
+                    <input type="text" id="offerSearch" placeholder="Search Offers..." onkeyup="searchOffers()">
+                    <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Room Type</th>
+                            <th>Description</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Discount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="offerTableBody">
+                        {% for offer in offers %}
+                        <tr>
+                            <td>{{ offer.id }}</td>
+                            <td>{{ offer.room.room_type }}</td>
+                            <td>{{ offer.description }}</td>
+                            <td>{{ offer.start_date }}</td>
+                            <td>{{ offer.end_date }}</td>
+                            <td>{{ offer.discount_percentage }}%</td>
+                            <td>
+                                <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No offers found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+<section id="feedbacks" class="content-section" style="display: none;">
+    <h2>User Feedbacks</h2>
+    <div class="search-container">
+        <input type="text" id="feedbackSearch" placeholder="Search Feedbacks..." onkeyup="searchFeedbacks()">
+        <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Comments</th>
+                <th>Rating</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="feedbackTableBody">
+            {% for feedback in feedbacks %}
+            <tr>
+                <td>{{ feedback.id }}</td>
+                <td>{{ feedback.user.name }}</td>
+                <td>{{ feedback.comments }}</td>
+                <td>{{ feedback.rating }}</td>
+                <td>{{ feedback.created_at|date:"Y-m-d H:i" }}</td>
+                <td>
+                    <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
+                    <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No feedbacks found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+        </main>
+    </div>
+    <script src="{% static 'js/database.js' %}"></script>
+</body>
+</html>

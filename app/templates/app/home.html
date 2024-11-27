@@ -1,5 +1,62 @@
-{% extends 'app/base.html' %}
+<!DOCTYPE html>
 {% load static %}
-{% block content%}
-    <h1>Home Page Pare!</h1>
-{% endblock content %}
+{% include 'app/navbar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <title>Home | Suite Dreams</title>
+</head>
+<body>
+    <section>
+        <div class="moon-icon">
+            <i class="ri-moon-fill"></i>
+        </div>
+        <div class="content">
+            <div class="textBox">
+                <h2>Suite Dreams Hotel</h2>
+                <p>
+                    Welcome to Suite Dreams, where luxury meets comfort in a serene setting.
+                    Our hotel offers elegantly designed suites that provide a perfect blend
+                    of modern amenities and timeless charm.
+                </p>
+                <div class="best-seller">
+                    <h3>Best Seller Package</h3>
+                    <p><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>Buffet Breakfast</span></p>
+                    <p><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>Family Activities</span></p>
+                    <p><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>Welcome Gift</span></p>
+                    <p><span>Note: Exclusive Only for Family</span></p>
+                    <p><span>Price: ₱5000.00/Hour</span></p>
+                    <a href="/book_appointment" class="book-now"><i class="ri-book-line"></i> Book Now</a>
+                </div>
+            </div>
+            <div class="imgBox">
+                <img src="{% static 'images/home/sample1.png' %}" class="sample" alt="Sample Image">
+            </div>
+        </div>
+        <ul class="thumb">
+            <li><img src="{% static 'images/home/sample1.png' %}" onclick="imgSlider(this.src); changeBgColor('#F5F0D9')" alt="Thumbnail 1"></li>
+            <li><img src="{% static 'images/home/sample2.png' %}" onclick="imgSlider(this.src); changeBgColor('#A1B9C5')" alt="Thumbnail 2"></li>
+            <li><img src="{% static 'images/home/sample3.png' %}" onclick="imgSlider(this.src); changeBgColor('#A4C8E1')" alt="Thumbnail 3"></li>
+        </ul>
+        <ul class="sci">
+            <li><a href="https://web.facebook.com/Feitann2002"><i class="ri-facebook-circle-fill"></i></a></li>
+            <li><a href="https://www.tiktok.com/@coyxcrown?_t=8rBKL5qa8fv&_r=1"><i class="ri-tiktok-fill"></i></a></li>
+            <li><a href="https://github.com/Feitann2002"><i class="ri-github-fill"></i></a></li>
+            <li><a href="mailto:feitann2002@gmail.com"><i class="ri-mail-line"></i></a></li>
+        </ul>
+    </section>
+
+    <script>
+        function imgSlider(source) {
+            document.querySelector('.sample').src = source;
+        }
+
+        function changeBgColor(color) {
+            document.querySelector('section').style.background = color;
+        }
+    </script>
+</body>
+</html>

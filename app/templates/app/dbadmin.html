@@ -1,0 +1,42 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dbcreate.css' %}">
+    <title>Admin Form</title>
+</head>
+{% block content %}
+    <div class="form-container">
+        <div class="header">
+            <h1>Admin Form</h1>
+            <a href="{% url 'database' %}" class="back-button" onclick="return confirmBack();"><i class="ri-close-line"></i></a>
+        </div>
+        <p class="intro-text">Please fill in the details below to add a new admin.</p>
+        <form id="adminForm" action="{% url 'create_admin' %}" method="post" onsubmit="return validatePasswords();">
+            {% csrf_token %}
+            <label for="firstname">First Name:</label>
+            {{ form.firstname }}
+
+            <label for="lastname">Last Name:</label>
+            {{ form.lastname }}
+
+            <label for="username">Username:</label>
+            {{ form.username }}
+
+            <label for="email">Email:</label>
+            {{ form.email }}
+
+            <label for="password">Password:</label>
+            {{ form.password }}
+
+            <label for="confirm_password">Confirm Password:</label>
+            {{ form.confirm_password }}
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+    <!-- Javascript -->
+    <script src="{% static '/js/passval.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #F2F2F2;
+    --body-color: hsl(220, 100%, 97%);
+    --body-font: "Montserrat", sans-serif;
+    --normal-font-size: .938rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+}
+/* -------------------------------------------------- Content Section ----------------------------------------------- */
+section {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    transition: background 0.5s ease;
+}
+
+.moon-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15em;
+    color: var(--primary-color);
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.moon-icon:hover {
+    transform: translate(-50%, -50%) rotate(360deg);
+}
+
+/* ----------------------------------------Introduction, Details Etc.-------------------------------------------------*/
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.content .textBox {
+    max-width: 400px;
+}
+
+.content .textBox h2 {
+    color: var(--primary-color);
+    font-size: 3.5em;
+    line-height: 1.2em;
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.content .textBox p {
+    color: var(--primary-color-dark);
+    margin: 15px 0;
+    font-size: 1.3em;
+}
+
+.content .textBox a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.content .textBox a:hover {
+    background: var(--primary-color-dark);
+    transform: scale(1.05);
+}
+
+/* ---------------------------------------- Package Offer Section -------------------------------------------------- */
+.best-seller {
+    margin-top: 30px;
+    padding: 20px;
+    border: 5px solid var(--primary-color);
+    border-radius: 10px;
+    background: linear-gradient(to bottom, var(--primary-color), transparent);
+}
+
+.spanPack {
+    color: var(--white);
+}
+span {
+    color: var(--primary-color);
+}
+.best-seller h3 {
+    color: var(--white);
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.best-seller p {
+    color: var(--primary-color-dark);
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.book-now {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.book-now:hover {
+    background: var(--primary-color-dark);
+    transform: scale(1.05);
+}
+
+/* ----------------------------------------- Image Design / Slider ---------------------------------------------------*/
+.content .imgBox {
+    margin-top: 50px;
+    max-width: 600px;
+}
+
+.content .imgBox img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.content .imgBox img:hover {
+    transform: scale(1.05);
+}
+
+.thumb {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.thumb li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 15px;
+    cursor: pointer;
+    background: var(--primary-color);
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.thumb li:hover {
+    transform: translateY(-10px);
+}
+
+.thumb li img {
+    max-width: 60px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.thumb li img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------- Social Media Links --------------------------------------------------*/
+.sci {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    background: var(--primary-color);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sci li {
+    list-style: none;
+}
+
+.sci li a {
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 1.5em;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.sci li a:hover {
+    transform: scale(1.2);
+    background: #0B6477;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ------------------------------------------- Responsive Design Section -------------------------------------------- */
+@media (min-width: 768px) {
+    section {
+        flex-direction: row;
+        padding: 100px 50px;
+    }
+
+    .content {
+        flex-direction: row;
+    }
+
+    .content .textBox {
+        max-width: 400px;
+        text-align: left;
+    }
+
+    .content .textBox h2 {
+        font-size: 3.5em;
+    }
+
+    .content .textBox p {
+        font-size: 1.3em;
+    }
+
+    .content .imgBox {
+        margin-left: 50px;
+    }
+
+    .thumb {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .moon-icon {
+        display: none;
+    }
+
+    section {
+        padding: 30px 10px;
+    }
+
+    .moon-icon {
+        font-size: 8em;
+    }
+
+    .content .textBox h2 {
+        font-size: 2.5em;
+    }
+
+    .content .textBox p {
+        font-size: 1em;
+    }
+
+    .thumb li {
+        margin: 0 5px;
+    }
+    .imgBox {
+         display: none;
+    }
+}
+

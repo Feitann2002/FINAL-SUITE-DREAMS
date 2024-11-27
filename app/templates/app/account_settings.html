@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/account_settings.css' %}">
+</head>
+<body>
+    {% include 'app/navbar.html' %}
+
+    <div class="container">
+        <h1><i class="ri-settings-3-line"></i> Account Settings</h1>
+        <div class="user-info">
+            <h2><i class="ri-user-3-line"></i> User Information</h2>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+
+        <h2>Your Appointments</h2>
+        {% if appointments %}
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th>Type</th>
+                        <th>Dates</th>
+                        <th>Total Cost</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                        <tr>
+                            <td>{{ appointment.room.room_number }}</td>
+                            <td>{{ appointment.room.room_type  }}</td>
+                            <td>{{ appointment.start_date }} to {{ appointment.end_date }}</td>
+                            <td>₱ {{ appointment.total_cost|floatformat:2 }}</td>
+                            <td class="action-cell">
+                                <form method="post" action="{% url 'edit_appointment' appointment.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-reschedule">
+                                        <i class="ri-refresh-line"></i> Reschedule
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You have no appointments yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

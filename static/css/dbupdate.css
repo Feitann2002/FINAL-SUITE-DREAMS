@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #F2F2F2;
+    --body-color: hsl(220, 100%, 97%);
+    --body-font: "Montserrat", sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    background:
+		  radial-gradient(35.36% 35.36% at 100% 25%,#0000 66%,#213A57 68% 70%,#0000 72%) 60px 60px/calc(2*60px) calc(2*60px),
+		  radial-gradient(35.36% 35.36% at 0    75%,#0000 66%,#213A57 68% 70%,#0000 72%) 60px 60px/calc(2*60px) calc(2*60px),
+		  radial-gradient(35.36% 35.36% at 100% 25%,#0000 66%,#213A57 68% 70%,#0000 72%) 0 0/calc(2*60px) calc(2*60px),
+		  radial-gradient(35.36% 35.36% at 0    75%,#0000 66%,#213A57 68% 70%,#0000 72%) 0 0/calc(2*60px) calc(2*60px),
+		  repeating-conic-gradient(#E4E4ED 0 25%,#0000 0 50%) 0 0/calc(2*60px) calc(2*60px),
+		  radial-gradient(#0000 66%,#213A57 68% 70%,#0000 72%) 0 calc(60px/2)/60px 60px
+		  #E4E4ED;
+    margin: 0;
+    padding: 20px;
+}
+/* -------------------------------------------------- Content Section ----------------------------------------------- */
+.form-container {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin: 0;
+    text-align: center;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: var(--primary-color-dark);
+}
+
+.intro-text {
+    margin: 20px 0;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+form label {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+form input[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+form input[type="submit"]:hover {
+    background-color: var(--primary-color-dark);
+}
+
+/* -------------------------------------------------- Responsive Design --------------------------------------------- */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+}

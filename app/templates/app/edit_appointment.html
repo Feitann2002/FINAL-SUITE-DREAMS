@@ -1,0 +1,65 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"> <!-- Remix Icon -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/edit_appointment.css' %}">
+    <title>Edit Appointment</title>
+</head>
+
+{% block content %}
+    <div class="form-container">
+        <div class="header">
+            <h1><i class="ri-save-line"></i> Edit Appointment</h1>
+            <a href="{% url 'account_settings' %}" class="back-button" onclick="return confirmBack();">
+                <i class="ri-arrow-left-line"></i>
+            </a>
+        </div>
+        <p class="intro-text">Update your appointment details below. Make sure everything is correct before confirming your changes.</p>
+
+        <div class="booking-info">
+            <h3 class="section-title">Current Appointment Details</h3>
+            <ul class="details-list">
+                <li><strong><i class="ri-home-line"></i> Room:</strong> {{ appointment.room.room_type }} (Room {{ appointment.room.room_number }})</li>
+                <li><strong><i class="ri-calendar-line"></i> Start Date & Time:</strong> <span class="date-field">{{ appointment.start_date|date:"F j, Y, g:i a" }}</span></li>
+                <li><strong><i class="ri-calendar-line"></i> End Date & Time:</strong> <span class="date-field">{{ appointment.end_date|date:"F j, Y, g:i a" }}</span></li>
+                <li><strong><i class="ri-money-dollar-box-line"></i> Total Cost:</strong>₱ {{ appointment.total_cost|floatformat:2 }}</li>
+                {% if appointment.calculate_total_cost != 0 %}
+                    <li><strong><i class="ri-box-3-fill"></i> Applicable Special Offer:</strong>
+                        {% if appointment.room.specialoffer_set.all %}
+                            {% for offer in appointment.room.specialoffer_set.all %}
+                                <p>{{ offer.description }} - {{ offer.discount_percentage }}% off</p>
+                            {% endfor %}
+                        {% else %}
+                            <p>No special offers available</p>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <form action="" method="post" onsubmit="return validateForm();">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="room"><i class="ri-home-line"></i> Room Type</label>
+                <select name="room" id="room" required>
+                    <option value="{{ appointment.room.id }}" selected>{{ appointment.room.room_type }} - Room {{ appointment.room.room_number }}</option>
+                    {% for room in rooms %}
+                        <option value="{{ room.id }}">{{ room.room_type }} - Room {{ room.room_number }}</option>
+                    {% endfor %}
+                </select>
+                <label for="start_date"><i class="ri-calendar-line"></i> Start Date & Time</label>
+                <input type="datetime-local" name="start_date" id="start_date" value="{{ appointment.start_date|date:'Y-m-d\TH:i' }}" required>
+
+                <label for="end_date"><i class="ri-calendar-line"></i> End Date & Time</label>
+                <input type="datetime-local" name="end_date" id="end_date" value="{{ appointment.end_date|date:'Y-m-d\TH:i' }}" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save"><i class="ri-save-line"></i> Update Appointment</button>
+            </div>
+        </form>
+
+        <script src="{% static '/js/edit_appointment.js' %}"></script>
+    </div>
+{% endblock content %}

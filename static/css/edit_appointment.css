@@ -1,0 +1,185 @@
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --secondary-color: #F6F6F6;
+    --white: #FFFFFF;
+    --body-font: "Montserrat", sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: #E4E4ED;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ---------------------------------------------- Form Container ---------------------------------------------------- */
+.form-container {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--white);
+    margin: 0;
+    font-size: 2rem;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.6rem;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: var(--primary-color-dark);
+}
+
+.intro-text {
+    margin: 20px 0;
+    color: var(--white);
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* --------------------------------------------- Recent Booking Info Section -----------------------------------------*/
+.booking-info {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.details-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.details-list li {
+    padding: 10px 0;
+    font-size: 1rem;
+    color: var(--primary-color-dark);
+    border-bottom: 1px solid #ddd;
+}
+
+.details-list li:last-child {
+    border-bottom: none;
+}
+
+/* -------------------------------------------------- Input Forms Section  ------------------------------------------ */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    color: var(--white);
+}
+
+form label {
+    font-size: 1.2rem;
+    color: var(--white);
+}
+
+form input[type="text"],
+form input[type="email"],
+form select,
+form input[type="datetime-local"] {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="datetime-local"]:focus,
+form select:focus {
+    border-color: var(--primary-color);
+    background-color: #fff;
+    outline: none;
+}
+
+/* -------------------------------------------------- Date Field Section ---------------------------------------------*/
+form input[type="datetime-local"] {
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+form input[type="datetime-local"]:focus {
+    border-color: var(--primary-color);
+    background-color: #fff;
+}
+
+/* ------------------------------------------------ Form Actions ---------------------------------------------------- */
+form .form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+form .btn-save {
+    background-color: #007BFF;
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+}
+
+form .btn-save:hover {
+    background-color: var(--primary-color-dark);
+}
+
+form .btn-save i {
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
+/* --------------------------------------------- Responsive Design -------------------------------------------------- */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    form .form-actions {
+        margin-top: 40px;
+    }
+}

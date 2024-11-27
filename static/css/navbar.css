@@ -5,7 +5,7 @@
   --main-color: #213A57;
   --light-color: #0B6477;
   --hover-color: #80ED99;
-  --white-color: #fff;
+  --white-color: #F2F2F2;
   --body-color: hsl(220, 100%, 97%);
   --body-font: "Montserrat", sans-serif;
   --normal-font-size: .938rem;
@@ -25,6 +25,7 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
+  padding-top: var(--header-height);
 }
 
 ul {
@@ -35,20 +36,21 @@ a {
   text-decoration: none;
 }
 
-/* --------------------------------------------- Navbar Design --------------------------------------------- */
+/* ------------------------------------------------- Navbar Design -------------------------------------------------- */
 .container {
   max-width: 1120px;
   margin-inline: 1.5rem;
 }
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--main-color);
-  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
-  z-index: var(--z-fixed);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--main-color);
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+    z-index: 1000;
+    min-height: var(--header-height);
 }
 
 .nav {
@@ -176,7 +178,7 @@ a {
   transform: rotate(90deg);
 }
 
-/* ------------------------------------------------ DROPDOWN ------------------------------------------------ */
+/* ------------------------------------------------------ DROPDOWN -------------------------------------------------- */
 .dropdownItem {
   cursor: pointer;
 }
@@ -237,7 +239,19 @@ a {
   background-color: var(--light-color);
 }
 
-/* ------------------------------------------------ Responsive Design ---------------------------------------------- */
+.logoutLink {
+  background-color: #f44336;
+  padding: 1.25rem 1.5rem;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.logoutLink:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+
+/* ------------------------------------------------ Responsive Design ----------------------------------------------- */
 @media screen and (min-width: 1024px) {
   :root {
     --normal-font-size: 1rem;
@@ -328,5 +342,3 @@ a {
     transition: top .3s;
   }
 }
-
-/* ----------------------------------------------------------------------------------------------------------- */

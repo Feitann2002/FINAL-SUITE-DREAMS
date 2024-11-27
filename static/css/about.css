@@ -1,0 +1,337 @@
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #F2F2F2;
+    --body-color: hsl(220, 100%, 97%);
+    --body-font: "Montserrat", sans-serif;
+}
+
+* {
+    font-family: var(--body-font);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--body-color);
+}
+
+/* ---------------------------------------------------- Team Profile ------------------------------------------------ */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.column {
+    margin: auto;
+    width: 30%;
+    padding: 0.5em 0;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3.5em;
+    color: var(--primary-color);
+}
+
+.card {
+    margin-top: 20px;
+    box-shadow: 0 0 2.2em rgba(25, 0, 58, 0.1);
+    padding: 2em 1em;
+    border-radius: 0.6em;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: var(--primary-color);
+}
+
+.card .img-container {
+    width: 8em;
+    height: 8em;
+    background-color: var(--white);
+    padding: 0.5em;
+    border-radius: 50%;
+    margin: 0 auto 2em auto;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.card h3 {
+    font-weight: 500;
+}
+
+.card p {
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0.5em 0 2em 0;
+    letter-spacing: 2px;
+}
+
+.icons {
+    width: 50%;
+    min-width: 50px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.4em;
+}
+
+.card:hover {
+    background: linear-gradient(var(--primary-color), var(--primary-color-dark));
+}
+
+.card:hover .img-container {
+    transform: scale(1.15);
+}
+
+/* --------------------------------------- About Us, Mission, Vision Section ---------------------------------------- */
+.about-sec {
+    display: flex;
+    padding: 3rem 0;
+    width: 100%;
+    justify-content: center;
+    background: var(--body-color);
+}
+
+.about-img {
+    width: 350px;
+    height: 300px;
+    margin: 0 3rem;
+    border: 3px solid black;
+}
+
+.about-img img {
+    height: 100%;
+    width: 100%;
+}
+
+.about-intro {
+    color: black;
+    width: 400px;
+    height: 250px;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 2rem;
+    margin: 0 3rem;
+}
+
+.about-intro p {
+    margin-top: 1rem;
+    font-size: 15px;
+    color: var(--black);
+}
+
+/* -------------------------------------------- Achievements Section ------------------------------------------------ */
+.achievements {
+    position: relative;
+    max-width: 1200px;
+    margin: 100px auto;
+}
+
+.a-container {
+    padding: 10px 50px;
+    position: relative;
+    width: 50%;
+    animation: movedown 1s linear forwards;
+    opacity: 0;
+}
+
+@keyframes movedown {
+    0% {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.a-container:nth-child(1) {
+    animation-delay: 2s;
+}
+
+.a-container:nth-child(2) {
+    animation-delay: 4s;
+}
+
+.a-container:nth-child(3) {
+    animation-delay: 6s;
+}
+
+.a-container:nth-child(4) {
+    animation-delay: 8s;
+}
+
+.a-container:nth-child(5) {
+    animation-delay: 10s;
+}
+
+.a-container:nth-child(6) {
+    animation-delay: 12s;
+}
+
+.text-box {
+    padding: 20px 30px;
+    background: var(--primary-color);
+    position: relative;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.left-container {
+    left: 0;
+}
+
+.right-container {
+    left: 50%;
+}
+
+.achievements::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: var(--primary-color);
+    top: 0;
+    left: 50%;
+    margin-left: -3px;
+    z-index: -1;
+    animation: moveline 12s linear forwards;
+}
+
+@keyframes moveline {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.text-box h2 {
+    font-weight: 600;
+    color: var(--white);
+}
+
+.text-box p {
+    margin-top: 5px;
+    color: var(--white);
+}
+
+.left-container-arrow {
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 28px;
+    z-index: 1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid var(--white);
+    right: -15px;
+}
+
+.right-container-arrow {
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 28px;
+    z-index: 1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid var(--white);
+    left: -15px;
+}
+
+/* ---------------------------------------------- Responsive Section ------------------------------------------------ */
+
+/* Responsive for Team */
+@media screen and (min-width: 768px) {
+    section {
+        padding: 1em 7em;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    section {
+        padding: 1em;
+    }
+    .card {
+        padding: 5em 1em;
+    }
+    .column {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+        padding: 0 1em;
+    }
+}
+
+/* Responsive for MISSION,VISION */
+@media only screen and (max-width: 900px) {
+    .about-sec {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-img {
+        width: 80%;
+    }
+    .about-intro {
+        width: 100%;
+        height: 100%;
+        border-top: 3px solid #00b894;
+        border-left: none;
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+    .about-intro h3,
+    p {
+        width: 80%;
+    }
+    .about-intro p {
+        font-size: 12px;
+    }
+}
+
+/* Responsive for Achievements/Goals */
+@media screen and (max-width: 600px) {
+    .achievements {
+        margin: 50px auto;
+    }
+    .achievements::after {
+        left: 31px;
+    }
+    .a-container {
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 25px;
+    }
+    .text-box {
+        font-size: 13px;
+    }
+    .right-container {
+        left: 0;
+    }
+    .left-container img,
+    .right-container img {
+        left: 10px;
+    }
+    .left-container-arrow,
+    .right-container-arrow {
+        border-right: 15px solid var(--white);
+        border-left: 0;
+        left: -15px;
+    }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/admin_login.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="{% url 'login' %}" class="user-login-button"><i class="ri-user-fill"></i></a>
+        </div>
+        <h1>Admin Login <i class="ri-admin-fill"></i></h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="username"><i class="ri-admin-fill"></i> Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password"><i class="ri-key-2-fill"></i> Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

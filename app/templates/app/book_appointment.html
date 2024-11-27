@@ -1,0 +1,38 @@
+{% load static %}
+<link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/book_appointment.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+<title>Book Appointment</title>
+
+{% block content %}
+{% include 'app/partners.html' %}
+
+    <div class="appointment-container">
+        <div class="title-container">
+            <h2><i class="ri-book-line"></i> Book an Appointment</h2>
+            <a href="{% url 'home' %}" class="back-btn"><i class="ri-arrow-left-line"></i></a>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="room"><i class="ri-home-fill"></i> Room:</label>
+                {{ form.room }}
+            </div>
+            <div class="form-group">
+                <label for="start_date"><i class="ri-calendar-2-fill"></i> Start Date & Time:</label>
+                <input type="datetime-local" id="start_date" name="start_date" value="{{ form.start_date.value|default:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="end_date"><i class="ri-calendar-2-fill"></i> End Date & Time:</label>
+                <input type="datetime-local" id="end_date" name="end_date" value="{{ form.end_date.value|default:'' }}">
+            </div>
+            <button type="submit" class="submit-btn"><i class="ri-book-fill"></i> Book Appointment</button>
+        </form>
+    </div>
+
+<script src="{% static '/js/book.js' %}"></script>
+
+    {% include 'app/footer.html' %}
+{% endblock %}

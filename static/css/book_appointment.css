@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #F2F2F2;
+    --body-color: hsl(220, 100%, 97%);
+    --body-font: "Montserrat", sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+.appointment-container {
+    max-width: 600px;
+    width: 100%;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 140px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* -------------------------------------------- Calendar Section ---------------------------------------------------- */
+input.flatpickr {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+input.flatpickr:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.flatpickr-calendar {
+    background-color: var(--white);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+}
+
+.flatpickr-day:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.flatpickr-time {
+    background-color: var(--white);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+}
+
+.flatpickr-time input {
+    font-size: 1rem;
+    padding: 6px;
+    margin: 0;
+}
+/* ------------------------------------------------- Footer -------------------------------------------------------- */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    position: relative;
+    bottom: 0;
+    margin-top: 40px;
+}
+
+/* -------------------------------------------- Title and Back Button ----------------------------------------------- */
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title-container h2 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.back-btn i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+/* ------------------------------------------------- Responsive Design ---------------------------------------------- */
+@media (max-width: 768px) {
+    .appointment-container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .back-btn {
+        font-size: 1rem;
+        padding: 6px;
+    }
+}

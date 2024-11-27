@@ -1,0 +1,55 @@
+{% load static %}
+<link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="{% static '/css/feedback.css' %}">
+<title>Feedback & Reviews</title>
+
+{% block content %}
+    <header>
+        {% include 'app/navbar.html' %}
+    </header>
+    <section class="feedback-container">
+        <div class="add-feedback">
+            <h1 class="main-title">User Feedback and Reviews</h1>
+             <a href="{% url 'add-feedback' %}" class="btn btn-primary">Add Your Feedback</a>
+        </div>
+
+        <div class="reviews">
+            {% for feedback in feedbacks %}
+            <div class="review">
+                <div class="review-header">
+                    <div class="review-header-left">
+                        <h3>{{ feedback.user.name }}</h3>
+                        <button class="toggle-comments-btn"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <div class="review-header-right">
+                        <span class="rating"><i class="ri-star-fill"></i> {{ feedback.rating }} / 5.0</span>
+                    </div>
+                </div>
+                <div class="review-body">
+                    <p class="comments" style="display: none;">{{ feedback.comments }}</p>
+                </div>
+                <div class="review-footer">
+                    <small>Posted on: {{ feedback.created_at|date:"F j, Y" }}</small>
+                </div>
+            </div>
+            {% empty %}
+            <p>No feedback available yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+<script>
+    document.querySelectorAll('.toggle-comments-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const commentParagraph = this.closest('.review').querySelector('.comments');
+            if (commentParagraph.style.display === 'none' || commentParagraph.style.display === '') {
+                commentParagraph.style.display = 'block';
+            } else {
+                commentParagraph.style.display = 'none';
+            }
+        });
+    });
+</script>

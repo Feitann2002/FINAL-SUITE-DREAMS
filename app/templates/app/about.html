@@ -1,5 +1,112 @@
-{% extends 'app/base.html' %}
 {% load static %}
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/about.css' %}">
+    <title>About Company</title>
+{% include 'app/navbar.html' %}
 {% block content%}
-    <h1>About Page Pare!</h1>
+<section>
+		<div class="row">
+			<h1>About Us</h1>
+		</div>
+		<div class="row">
+			<!-- Column 1 -->
+			<div class="column">
+				<div class="card">
+					<div class="img-container">
+						<img src="{% static '/images/about/profile3.png' %}">
+					</div>
+					<h3>Mathilda Granger</h3>
+					<p>Admin Manager</p>
+					<div class="icons">
+						<a href=""><i class="ri-facebook-fill"></i></a>
+						<a href=""><i class="ri-tiktok-fill"></i></a>
+						<a href=""><i class="ri-github-fill"></i></a>
+						<a href=""><i class="ri-mail-line"></i></a>
+					</div>
+				</div>
+			</div>
+			<!-- Column 2 -->
+			<div class="column">
+				<div class="card">
+					<div class="img-container">
+						<img src="{% static '/images/about/profile2.png' %}">
+					</div>
+					<h3>Carms Naling</h3>
+					<p>Founder</p>
+					<div class="icons">
+						<a href=""><i class="ri-facebook-fill"></i></a>
+						<a href=""><i class="ri-tiktok-fill"></i></a>
+						<a href=""><i class="ri-github-fill"></i></a>
+						<a href=""><i class="ri-mail-line"></i></a>
+					</div>
+				</div>
+			</div>
+			<!-- Column 3 -->
+			<div class="column">
+				<div class="card">
+					<div class="img-container">
+						<img src="{% static '/images/about/profile1.png' %}">
+					</div>
+					<h3>Jerone Naling</h3>
+					<p>Developer</p>
+					<div class="icons">
+						<a href=""><i class="ri-facebook-fill"></i></a>
+						<a href=""><i class="ri-tiktok-fill"></i></a>
+						<a href=""><i class="ri-github-fill"></i></a>
+						<a href=""><i class="ri-mail-line"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<!--Mission and Vision Section-->
+	<div class="about-sec">
+		<div class="about-img">
+			<img src="{% static '/images/about/SuiteDreams.png' %}">
+		</div>
+		<div class="about-intro">
+			<h3>Mission <span style="color: #213A57;"> !</span></h3>
+				<p>Our mission is to deliver exceptional luxury and personalized service that creates unforgettable experiences for every guest. We strive to anticipate needs and exceed expectations, ensuring that every moment spent with us is memorable.</p>
+				<br>
+			<h3>Vision <span style="color: #213A57;"> !</span></h3>
+				<p>Our vision is to be the leading five-star hotel brand, recognized globally for redefining hospitality through unparalleled service and luxurious experiences. We aspire to inspire memorable journeys for our guests, fostering a deep connection to the cultures and communities we serve.</p>
+		</div>
+	</div>
+
+<!--Achivements Section-->
+	<div class="achievements">
+		<div class="a-container left-container">
+			<div class="text-box">
+				<h2>Luxury Experience Enhancement</h2>
+				<p>Introduce innovative services and amenities, such as personalized concierge services and unique guest experiences (e.g., private tours, exclusive events) to elevate the luxury experience.</p>
+			</div>
+		</div>
+		<div class="a-container right-container">
+			<div class="text-box">
+				<h2>Community Engagement</h2>
+				<p>Develop partnerships with local businesses and artisans to promote community tourism, aiming to integrate local culture and cuisine into the guest experience while supporting the local economy.</p>
+			</div>
+		</div>
+		<div class="a-container left-container">
+			<div class="text-box">
+				<h2>Technology Integration</h2>
+				<p>Implement advanced technology solutions, such as mobile check-in/check-out, smart room controls, and AI-powered concierge services, to enhance guest convenience and streamline operations.</p>
+			</div>
+		</div>
+		<div class="a-container right-container">
+			<div class="text-box">
+				<h2>Personalized Guest Experiences</h2>
+				<p>Implement a system for gathering and analyzing guest preferences to offer personalized services and amenities, aiming to enhance guest satisfaction scores by 15%.</p>
+			</div>
+		</div>
+		<div class="a-container left-container">
+			<div class="text-box">
+				<h2>Guest Feedback Integration</h2>
+				<p>Establish a comprehensive guest feedback system to continuously gather insights and improve services, aiming to respond to and resolve 90% of guest complaints within 24 hours.</p>
+			</div>
+		</div>
+	</div>
 {% endblock content %}

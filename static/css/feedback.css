@@ -1,0 +1,258 @@
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #FFFFFF;
+    --body-color: #F4F4F9;
+    --highlight-color: #FFD700;
+    --gray-light: #f0f0f0;
+    --gray-dark: #555;
+    --gray-medium: #777;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --font-main: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: radial-gradient(circle farthest-side at 0% 50%,#E4E4ED 23.5%,#0000 0)36.8px 52.5px,
+        radial-gradient(circle farthest-side at 0% 50%,#213A57 24%,#0000 0)33.3px 52.5px,
+        linear-gradient(#E4E4ED 14%,#0000 0, #0000 85%,#E4E4ED 0)0 0,
+        linear-gradient(150deg,#E4E4ED 24%,#213A57 0,#213A57 26%,#0000 0,#0000 74%,#213A57 0,#213A57 76%,#E4E4ED 0)0 0,
+        linear-gradient(30deg,#E4E4ED 24%,#213A57 0,#213A57 26%,#0000 0,#0000 74%,#213A57 0,#213A57 76%,#E4E4ED 0)0 0,
+        linear-gradient(90deg,#213A57 2%,#E4E4ED 0,#E4E4ED 98%,#213A57 0%)0 0 #E4E4ED;
+    background-size: 70px 105px;
+    background-color: #E4E4ED;
+    color: var(--gray-dark);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+/* -------------------------------------------- Title and Button Section -------------------------------------------- */
+.feedback-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    border-radius: 30px;
+    padding: 5px;
+    background: var(--primary-color);
+}
+
+.add-feedback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.add-feedback .main-title {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.add-feedback .btn {
+    background-color: #45a049;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 6px 12px var(--shadow-light);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 20px;
+}
+
+.add-feedback .btn:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+}
+
+/* ---------------------------------------------- Users Review Section ---------------------------------------------- */
+.reviews {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--shadow-light);
+    padding: 30px;
+}
+
+.review {
+    border-bottom: 1px solid var(--gray-light);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.review:last-child {
+    border-bottom: none;
+}
+
+.review:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.review-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.review-header-left h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.review-header-right {
+    text-align: right;
+}
+
+.rating {
+    background-color: var(--highlight-color);
+    color: var(--primary-color-dark);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.toggle-comments-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-comments-btn:hover {
+    color: var(--primary-color-dark);
+}
+
+.review-body {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--gray-dark);
+}
+
+.comments {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: black;
+    line-height: 1.5;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.review-footer {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--gray-medium);
+}
+
+small {
+    font-style: italic;
+    color: var(--gray-dark);
+}
+
+/* ------------------------------------------------------- Responsive Design ---------------------------------------- */
+@media screen and (max-width: 768px) {
+    .feedback-container {
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .add-feedback {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 30px;
+    }
+
+    .add-feedback .btn {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .reviews {
+        padding: 20px;
+    }
+
+    .review {
+        padding: 15px;
+    }
+
+    .review-header-left h3 {
+        font-size: 1.4rem;
+    }
+
+    .rating {
+        font-size: 1rem;
+    }
+
+    .toggle-comments-btn {
+        font-size: 1.2rem;
+    }
+
+    .comments {
+        font-size: 0.9rem;
+    }
+
+    .review-footer {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-title {
+        font-size: 1.2rem;
+    }
+
+    .add-feedback .btn {
+        padding: 8px 16px;
+    }
+
+    .review-header-left h3 {
+        font-size: 1.2rem;
+    }
+
+    .review-header-right .rating {
+        font-size: 1rem;
+    }
+}

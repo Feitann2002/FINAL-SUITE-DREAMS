@@ -1,0 +1,72 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/privacy_policy.css' %}">
+    <title>Privacy Policy</title>
+</head>
+
+{% block content %}
+<div id="grid-box">
+    <div id="div1">
+        {% include 'app/navbar.html' %}
+    <div id="content">
+        <div class="policy-section" id="policy1">
+            <h2>User Privacy</h2>
+            <p>We value your privacy and are dedicated to safeguarding it. This policy outlines our practices
+                regarding the collection, use, and protection of your personal information. We implement steps
+                to guarantee that your data is securely managed at all times. Your confidence is crucial to us,
+                and we work hard to uphold it by honoring your privacy. You can be assured that we prioritize
+                the security and confidentiality of your information.</p>
+        </div>
+        <div class="policy-section" id="policy2">
+            <h2>Data Collection</h2>
+            <p>We gather information to enhance our offerings and improve your overall experience. This encompasses
+                personal information, browsing habits, and usage data. All information is collected in compliance
+                with privacy legislation and regulations. We pledge to manage this data responsibly and securely.
+                Your privacy is our highest priority, and we guarantee that all information is treated with utmost
+                care.</p>
+        </div>
+        <div class="policy-section" id="policy3">
+            <h2>Data Protection</h2>
+            <p>We take robust security precautions to safeguard your information against unauthorized access, theft,
+                or loss. This encompasses encryption, secure servers, and frequent security evaluations. Our aim is to
+                guarantee the safety of your personal details at all times. We consistently enhance our security
+                measures to stay ahead of possible threats. Protecting your privacy and securing your data are our
+                highest priorities.</p>
+        </div>
+        <div class="policy-section" id="policy4">
+            <h2>User Rights</h2>
+            <p>Guests are entitled to view and update their personal account details, create or cancel reservations
+                in line with hotel policies, and anticipate that their information will be managed securely in
+                accordance with privacy laws. They also have the right to ask about any data gathering methods and
+                provide feedback or express concerns.</p>
+        </div>
+    </div>
+</div>
+
+<div id="popupModal" class="popup-modal">
+    <div class="popup-content">
+        <span class="popup-close" onclick="closePopup()">&times;</span>
+        <h2 id="popupTitle">Policy Inquiry</h2>
+        <p id="popupDescription">Please fill out the form below if you have any questions or inquiries related to this policy.</p>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+    <!-- Javascript -->
+    <script src="{% static '/js/privacy_policy.js' %}"></script>
+{% endblock content %}

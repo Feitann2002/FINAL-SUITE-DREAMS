@@ -1,0 +1,200 @@
+:root {
+    --primary-color: #213A57;
+    --highlight-color: #27ae60;
+    --white: #ffffff;
+    --gray-light: #f2f2f2;
+    --font-family: "Montserrat", sans-serif;
+    --font-size-base: 16px;
+    --modal-bg-color: rgba(0, 0, 0, 0.6);
+    --modal-content-bg: #fff;
+    --transition-duration: 0.3s;
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-dark: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--gray-light);
+    padding-top: 3.5rem;
+}
+
+.room-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.room-title {
+    font-size: 2.8rem;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 3rem;
+}
+
+.room-product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+}
+
+.room-product {
+    text-align: center;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
+    transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration);
+}
+
+.room-product:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-dark);
+}
+
+.room-product img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform var(--transition-duration);
+}
+
+.room-product:hover img {
+    transform: scale(0.95);
+}
+
+.room-product h3 {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+    color: var(--primary-color);
+}
+
+.room-price {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* ----------------------------------------------- Room Preview Section --------------------------------------------- */
+.room-products-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-bg-color);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    border-radius: 20px;
+}
+
+.room-preview {
+    display: none;
+    background-color: var(--modal-content-bg);
+    width: 40rem;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-duration);
+}
+
+.room-preview.active {
+    display: block;
+}
+
+.room-preview img {
+    width: 90%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 20px;
+}
+
+.room-preview .ri-close-fill {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: transform var(--transition-duration), color var(--transition-duration);
+}
+
+.room-preview .ri-close-fill:hover {
+    transform: rotate(90deg);
+    color: var(--highlight-color);
+}
+
+.room-preview h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.room-preview p {
+    font-size: 1.2rem;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.room-price {
+    font-size: 1.5rem;
+    color: var(--highlight-color);
+    margin-bottom: 1.5rem;
+}
+
+.room-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+}
+
+.room-buttons a {
+    padding: 1rem 2rem;
+    background-color: var(--highlight-color);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+.room-buttons a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* -------------------------------------------------- Responsive Design --------------------------------------------- */
+@media (max-width: 1024px) {
+    .room-product-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .room-product-container {
+        grid-template-columns: 1fr;
+    }
+    .room-preview {
+        width: 90%;
+    }
+    .room-preview img {
+        max-height: 250px;
+    }
+}

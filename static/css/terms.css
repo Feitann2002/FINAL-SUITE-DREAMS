@@ -1,0 +1,155 @@
+/* Global Styles */
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #F2F2F2;
+    --body-color: hsl(220, 100%, 97%);
+    --body-font: "Montserrat", sans-serif;
+}
+
+body {
+    font-family: var(--body-font);
+    background:
+		  radial-gradient(circle farthest-side at 0% 50%,#E4E4ED 23.5%,#0000 0)36.8px 52.5px,
+		  radial-gradient(circle farthest-side at 0% 50%,#213A57 24%,#0000 0)33.3px 52.5px,
+		  linear-gradient(#E4E4ED 14%,#0000 0, #0000 85%,#E4E4ED 0)0 0,
+		  linear-gradient(150deg,#E4E4ED 24%,#213A57 0,#213A57 26%,#0000 0,#0000 74%,#213A57 0,#213A57 76%,#E4E4ED 0)0 0,
+		  linear-gradient(30deg,#E4E4ED 24%,#213A57 0,#213A57 26%,#0000 0,#0000 74%,#213A57 0,#213A57 76%,#E4E4ED 0)0 0,
+		  linear-gradient(90deg,#213A57 2%,#E4E4ED 0,#E4E4ED 98%,#213A57 0%)0 0 #E4E4ED;
+	background-size: 70px 105px;
+	background-color: #E4E4ED;
+    color: var(--primary-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+/* ------------------------------------- Terms Whole Container and the Title ---------------------------------------- */
+.terms-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 80px auto 40px auto;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.terms-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1.2s forwards 0.3s;
+}
+/* ----------------------------------------------- Content Section -------------------------------------------------- */
+.terms-content {
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--primary-color-dark);
+    margin-top: 40px;
+    border-bottom: 2px solid var(--primary-color-dark);
+    padding-bottom: 10px;
+    opacity: 0;
+    animation: fadeIn 1s forwards 0.5s;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeIn 1s forwards 0.7s;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+/* ---------------------------------------- Button and Rights Section ----------------------------------------------- */
+a {
+    color: var(--primary-color-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+    display: inline-block;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.2s;
+}
+
+.btn:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--primary-color-dark);
+    margin-top: 50px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* --------------------------------------------- Responsive Design -------------------------------------------------- */
+@media (max-width: 768px) {
+    .terms-title {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p, ul li {
+        font-size: 0.9rem;
+    }
+
+    .terms-container {
+        padding: 15px;
+    }
+}

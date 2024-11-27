@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
-    <title>Navbar</title>
+    <title>Suite Dreams</title>
 </head>
 <body>
     <header class="header">
         <nav class="nav container">
             <div class="navData">
-               <a href="#" class="navLogo"><i class="ri-moon-line"></i>Suite Dreams</a>
+               <a href="#" class="navLogo"><i class="ri-moon-line"></i>Suite Dreams Hotel</a>
 
                <div class="navToggle" id="nav-toggle">
                   <i class="ri-menu-line navBurger"></i>
@@ -25,19 +27,21 @@
             <!-- Navigation Menu -->
             <div class="navMenu" id="nav-menu">
                <ul class="navList">
-                  <li><a href="#" class="navLink">Home</a></li>
-                  <li><a href="#" class="navLink">Company</a></li>
-                  <li><a href="#" class="navLink">Accommodations</a></li>
-                  <li><a href="#" class="navLink">Contact</a></li>
+                  <li><a href="/home" class="navLink">Home</a></li>
+                  <li><a href="/about" class="navLink">Company</a></li>
+                  <li><a href="/room" class="navLink">Rooms</a></li>
+                  <li><a href="/contact" class="navLink">Contact</a></li>
 
                   <!-- "MORE" Dropdown Menu -->
                   <li class="dropdownItem">
                       <div class="navLink">More<i class="ri-arrow-down-s-line dropdownArrow"></i></div>
                      <ul class="dropdownMenu">
-                         <li><a href="#" class="dropdownLink"><i class="ri-question-mark"></i>FAQs</a></li>
-                         <li><a href="#" class="dropdownLink"><i class="ri-lock-line"></i>Privacy Policy</a></li>
-                         <li><a href="#" class="dropdownLink"><i class="ri-message-3-line"></i>Terms and Conditions</a></li>
-                         <li><a href="#" class="dropdownLink"><i class="ri-feedback-line"></i>Feedback & Reviews</a></li>
+                         <li><a href="/faqs" class="dropdownLink"><i class="ri-question-mark"></i>FAQs</a></li>
+                         <li><a href="/privacy" class="dropdownLink"><i class="ri-lock-line"></i>Privacy Policy</a></li>
+                         <li><a href="/terms" class="dropdownLink"><i class="ri-message-3-line"></i>Terms and Conditions</a></li>
+                         <li><a href="/reviews" class="dropdownLink"><i class="ri-feedback-line"></i>Feedback & Reviews</a></li>
+                         <li><a href="/account_settings" class="dropdownLink"><i class="ri-settings-3-line"></i>Account Settings</a></li>
+                         <li><a href="#" class="dropdownLink" onclick="confirmLogout(event)"><i class="ri-logout-box-line"></i>Logout</a></li>
                      </ul>
                   </li>
                </ul>
@@ -46,5 +50,15 @@
     </header>
     <!-- Javascript -->
     <script src="{% static '/js/navbar.js' %}"></script>
+    <script>
+    function confirmLogout(event) {
+        event.preventDefault();
+        const confirmation = confirm("Are you sure you want to log out?");
+        if (confirmation) {
+            window.location.href = "{% url 'login' %}";
+        }
+    }
+    </script>
+
 </body>
 </html>
