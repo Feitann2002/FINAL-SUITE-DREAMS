@@ -1,0 +1,39 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dbdelete.css' %}">
+    <title>Delete Appointment</title>
+</head>
+{% block content %}
+    <div class="overlay">
+        <div class="form-container">
+            <div class="header">
+                <h1>Deleting Appointment</h1>
+                <a href="{% url 'database' %}" class="back-button" onclick="return confirmBack();">
+                    <i class="ri-close-line"></i>
+                </a>
+            </div>
+            <p class="intro-text">Are you sure you want to delete this appointment "<strong>{{ appointment.id }}</strong>"?</p>
+            <div class="admin-info">
+                <p><strong>User:</strong> {{ appointment.user.name }}</p>
+                <p><strong>Room Type:</strong> {{ appointment.room.room_type }}</p>
+                <p><strong>Start Date:</strong> {{ appointment.start_date }}</p>
+                <p><strong>End Date:</strong> {{ appointment.end_date }}</p>
+            </div>
+            <div class="warning-message">
+                <i class="ri-alert-fill"></i> This action cannot be undone.
+            </div>
+            <form action="{% url 'appointment_delete' appointment.pk %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Confirm" class="confirm-button">
+            </form>
+        </div>
+    </div>
+    <script>
+        function confirmBack() {
+            return confirm("Are you sure you want to go back? Any unsaved changes will be lost.");
+        }
+    </script>
+{% endblock content %}

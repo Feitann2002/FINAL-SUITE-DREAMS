@@ -1,0 +1,72 @@
+:root {
+    --primary-color: #213A57;
+    --primary-color-dark: #0B6477;
+    --white: #F2F2F2;
+    --body-color: hsl(220, 100%, 97%);
+    --body-font: "Montserrat", sans-serif;
+    --text-color: #213A57;
+    --button-hover: #0B6477;
+    --border-radius: 8px;
+}
+
+body {
+    font-family: var(--body-font);
+    background: var(--body-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.offers {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+}
+
+.offer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.offer-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.offers p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+    color: var(--text-color);
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.1);
+}
+
+.back-button i {
+    font-size: 18px;
+}

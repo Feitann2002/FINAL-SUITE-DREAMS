@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
 from .forms import UserRegistrationForm, FeedbackForm, AppointmentUpdateForm
 from .models import User, Admin, Appointment, SpecialOffer, Room, Feedback
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -46,6 +47,8 @@ def admin_login(request):
         try:
             admin = Admin.objects.get(username=username)
             if admin.password == password:
+                request.session['admin_id'] = admin.id
+                request.session['admin_username'] = admin.username
                 return redirect('database')
             else:
                 messages.error(request, "Invalid username or password.")
@@ -71,6 +74,8 @@ class DatabasePageView(TemplateView):
         context['offers'] = SpecialOffer.objects.all()
         context['feedbacks'] = Feedback.objects.all()
 
+        admin_username = self.request.session.get('admin_username')
+        context['admin_username'] = admin_username
         return context
 
 
@@ -81,6 +86,27 @@ class UserSplashView(TemplateView):
 class HomePageView(TemplateView):
     template_name = 'app/home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['offers'] = SpecialOffer.objects.all()
+        return context
+
+
+class OfferListView(ListView):
+    model = SpecialOffer
+    context_object_name = 'offers'
+    template_name = 'app/home.html'
+
+
+class OfferDetailView(DetailView):
+    model = SpecialOffer
+    context_object_name = 'offer'
+    template_name = 'app/detail_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['offers'] = SpecialOffer.objects.all()
+        return context
 
 class AboutPageView(TemplateView):
     template_name = 'app/about.html'
@@ -130,20 +156,110 @@ class AdminListView(ListView):
 
 class AdminCreateView(CreateView):
     model = Admin
-    fields = ['firstname', 'lastname', 'username', 'email', 'password', 'confirm_password']
+    fields = ['firstname', 'lastname', 'username', 'email', 'password']
     template_name = 'app/dbadmin.html'
 
     def get_success_url(self):
         return reverse_lazy('database') + '?section=admins'
 
 
+class UserCreateView(CreateView):
+    model = User
+    fields = ['name', 'username', 'email', 'password']
+    template_name = 'app/adduser.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=users'
+
+
+class RoomCreateView(CreateView):
+    model = Room
+    fields = ['room_number', 'room_type', 'capacity', 'price_per_hour']
+    template_name = 'app/addroom.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=rooms'
+
+
+class Appointment2CreateView(CreateView):
+    model = Appointment
+    fields = ['user', 'room', 'start_date', 'end_date']
+    template_name = 'app/addappointment.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=appointments'
+
+
+class SpecialOfferCreateView(CreateView):
+    model = SpecialOffer
+    fields = ['room', 'discount_percentage', 'start_date', 'end_date', 'description']
+    template_name = 'app/addoffers.html'
+
+    def get_success_url(self):
+        return  reverse_lazy('database') + '?section=offers'
+
+
+class FeedbackCreateView(CreateView):
+    model = Feedback
+    fields = ['user', 'rating', 'comments']
+    template_name = 'app/addfeedback.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=feedbacks'
+
+
 class AdminUpdateView(UpdateView):
     model = Admin
-    fields = ['firstname', 'lastname', 'username', 'email', 'password', 'confirm_password']
+    fields = ['firstname', 'lastname', 'username', 'email', 'password']
     template_name = 'app/admin_update.html'
 
     def get_success_url(self):
         return reverse_lazy('database') + '?section=admins'
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    fields = ['name', 'username', 'email', 'password']
+    template_name = 'app/user_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=users'
+
+
+class RoomUpdateView(UpdateView):
+    model = Room
+    fields = ['room_number', 'room_type', 'capacity', 'price_per_hour']
+    template_name = 'app/room_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=rooms'
+
+
+class Appointment2UpdateView(UpdateView):
+    model = Appointment
+    fields = ['user', 'room', 'start_date', 'end_date']
+    template_name = 'app/update_appointment.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=appointments'
+
+
+class SpecialOfferUpdateView(UpdateView):
+    model = SpecialOffer
+    fields = ['room', 'discount_percentage', 'start_date', 'end_date', 'description']
+    template_name = 'app/offer_update.html'
+
+    def get_success_url(self):
+        return  reverse_lazy('database') + '?section=offers'
+
+
+class FeedbackUpdateView(UpdateView):
+    model = Feedback
+    fields = ['user', 'rating', 'comments']
+    template_name = 'app/feedback_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=feedbacks'
 
 
 class AdminDeleteView(DeleteView):
@@ -152,6 +268,58 @@ class AdminDeleteView(DeleteView):
 
     def get_success_url(self):
         return  reverse_lazy('database') + '?section=admins'
+
+
+class UserDeleteView(DeleteView):
+    model = User
+    template_name = 'app/user_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=users'
+
+
+class RoomDeleteView(DeleteView):
+    model = Room
+    template_name = 'app/room_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=rooms'
+
+
+class Appointment2DeleteView(DeleteView):
+    model = Appointment
+    template_name = 'app/appointment_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=appointments'
+
+
+class SpecialOffer2DeleteView(DeleteView):
+    model = SpecialOffer
+    template_name = 'app/delete_offer.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(SpecialOffer, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['offer'] = self.get_object()
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=offers'
+
+
+class Feedback2DeleteView(DeleteView):
+    model = Feedback
+    template_name = 'app/delete_feedback.html'
+
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Feedback, pk=self.kwargs['pk'])
+        return obj
+
+    def get_success_url(self):
+        return reverse_lazy('database') + '?section=feedbacks'
 
 
 class AppointmentCreateView(CreateView):
@@ -278,7 +446,6 @@ def add_feedback(request):
             feedback = form.save(commit=False)
             feedback.user = user
             feedback.save()
-            messages.success(request, "Your feedback has been submitted successfully!")
             return redirect('feedback_list')
     else:
         form = FeedbackForm()

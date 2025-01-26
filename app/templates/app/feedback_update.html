@@ -1,0 +1,45 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dbcreate.css' %}">
+    <title>Update Feedback</title>
+</head>
+{% block content %}
+    <div class="form-container">
+        <div class="header">
+            <h1>Update Feedback</h1>
+            <a href="{% url 'database' %}" class="back-button" onclick="return confirmBack();">
+                <i class="ri-close-line"></i>
+            </a>
+        </div>
+        <p class="intro-text">Please update the details below for the feedback.</p>
+        <form action="{% url 'feedback_update' object.pk %}" method="post">
+           {% csrf_token %}
+             <label for="user">User:</label>
+             {{ form.user }}
+            {% for error in form.user.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+
+             <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating">
+            {% for error in form.rating.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+
+            <label for="comments">Comment:</label>
+            {{ form.comments }}
+            {% for error in form.comments.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <script>
+        function confirmBack() {
+            return confirm("Are you sure you want to go back? Any unsaved changes will be lost.");
+        }
+    </script>
+{% endblock content %}

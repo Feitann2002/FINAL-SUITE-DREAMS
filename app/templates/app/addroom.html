@@ -1,0 +1,47 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dbcreate.css' %}">
+    <title>Room Form</title>
+</head>
+{% block content %}
+    <div class="form-container">
+        <div class="header">
+            <h1>Room Form</h1>
+            <a href="{% url 'database' %}" class="back-button" onclick="return confirmBack();"><i class="ri-close-line"></i></a>
+        </div>
+        <p class="intro-text">Please fill in the details below to add new room.</p>
+         <form id="adminForm" action="{% url 'create_room' %}" method="post" onsubmit="return validatePasswords();">
+            {% csrf_token %}
+            <label for="room_number">Room Number:</label>
+            <input type="text" id="room_number" name="room_number">
+            {% for error in form.room_number.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+
+            <label for="room_type">Room Type:</label>
+            <input type="text" id="room_type" name="room_type">
+            {% for error in form.room_type.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+
+             <label for="capacity">Capacity:</label>
+            <input type="text" id="capacity" name="capacity">
+            {% for error in form.capacity.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+
+             <label for="price_per_hour">Price per Hour:</label>
+            <input type="number" id="price_per_hour" name="price_per_hour">
+            {% for error in form.price_per_hour.errors %}
+            <small style="color: red">{{ error }}</small>
+            {% endfor %}
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+    <!-- Javascript -->
+    <script src="{% static '/js/passval.js' %}"></script>
+{% endblock content %}

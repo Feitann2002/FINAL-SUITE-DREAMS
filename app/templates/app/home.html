@@ -23,12 +23,10 @@
                     of modern amenities and timeless charm.
                 </p>
                 <div class="best-seller">
-                    <h3>Best Seller Package</h3>
-                    <p><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>Buffet Breakfast</span></p>
-                    <p><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>Family Activities</span></p>
-                    <p><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>Welcome Gift</span></p>
-                    <p><span>Note: Exclusive Only for Family</span></p>
-                    <p><span>Price: ₱5000.00/Hour</span></p>
+                    <h3>Special Offers</h3>
+                    {% for offer in offers %}
+                    <p><a href="{% url 'detail_view' offer.pk %}"><span class="spanPack"><i class="ri-arrow-right-s-fill"></i>{{ offer.description }}</span></a></p>
+                    {% endfor %}
                     <a href="/book_appointment" class="book-now"><i class="ri-book-line"></i> Book Now</a>
                 </div>
             </div>

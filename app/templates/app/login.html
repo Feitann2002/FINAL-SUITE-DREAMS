@@ -11,33 +11,40 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
 </head>
 <body>
-    <div class="container">
-        <div class="nav">
-            <a href="{% url 'admin_login' %}" class="admin-button">
-                <i class="ri-admin-fill"></i>
-            </a>
+    <div class="two-column-container">
+        <div class="left-section">
+            <a href="{% url 'home' %}" class="nav-button"><i class="ri-home-5-line"></i> Home</a>
+
+            <h2>Welcome to Suite Dreams</h2>
+            <p>Your dream vacation starts here. Log in to manage your bookings and enjoy exclusive features. <br><br>
+                If you want to know more about the Website or Company just click the "Home" button.</p>
+            <img src="{% static '/images/about/SuiteDreams.png' %}">
         </div>
-        <h1>User Login <i class="ri-user-fill"></i></h1>
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <label for="username">
-                <i class="ri-user-fill"></i> Username
-            </label>
-            <input type="text" id="username" name="username" required>
+        <div class="right-section">
+            <a href="{% url 'admin_login' %}" class="admin-button"><i class="ri-admin-fill"></i> Admin</a>
 
-            <label for="password">
-                <i class="ri-key-2-fill"></i> Password
-            </label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Login</button>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="error-message">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        </form>
-        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p>
+            <div class="content-wrapper">
+                <h1>User Login <i class="ri-user-fill"></i></h1>
+                <form method="post" action="{% url 'login' %}" class="login-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username"><i class="ri-user-fill"></i> Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="ri-key-2-fill"></i> Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="login-button">Login</button>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="error-message">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </form>
+                <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

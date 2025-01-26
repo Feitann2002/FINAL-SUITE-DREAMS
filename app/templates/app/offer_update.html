@@ -1,0 +1,48 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/dbcreate.css' %}">
+    <title>Update Offer</title>
+</head>
+{% block content %}
+    <div class="form-container">
+        <div class="header">
+            <h1>Update Offer</h1>
+            <a href="{% url 'database' %}" class="back-button" onclick="return confirmBack();">
+                <i class="ri-close-line"></i>
+            </a>
+        </div>
+        <p class="intro-text">Please update the details below for the offer.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="room">Room:</label>
+            {{ form.room }}
+        </div>
+        <div class="form-group">
+            <label for="discount_percentage">Discount:</label>
+            {{ form.discount_percentage }}
+        </div>
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            {{ form.start_date }}
+        </div>
+        <div class="form-group">
+            <label for="start_end">End Date:</label>
+            {{ form.end_date }}
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            {{ form.description }}
+        </div>
+         <input type="submit" value="Save">
+    </form>
+    </div>
+    <script>
+        function confirmBack() {
+            return confirm("Are you sure you want to go back? Any unsaved changes will be lost.");
+        }
+    </script>
+{% endblock content %}

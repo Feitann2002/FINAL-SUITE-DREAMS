@@ -150,6 +150,11 @@ footer {
     margin-right: 10px;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
 /* ------------------------------------------------- Responsive Design ---------------------------------------------- */
 @media (max-width: 768px) {
     .appointment-container {

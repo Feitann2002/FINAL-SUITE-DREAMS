@@ -4,44 +4,44 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static '/css/dbcreate.css' %}">
-    <title>Admin Form</title>
+    <title>Special Offer Form</title>
 </head>
 {% block content %}
     <div class="form-container">
         <div class="header">
-            <h1>Admin Form</h1>
+            <h1>Special Offer Form</h1>
             <a href="{% url 'database' %}" class="back-button" onclick="return confirmBack();"><i class="ri-close-line"></i></a>
         </div>
-        <p class="intro-text">Please fill in the details below to add new admin.</p>
-        <form id="adminForm" action="{% url 'create_admin' %}" method="post" onsubmit="return validatePasswords();">
+        <p class="intro-text">Please fill in the details below to add new offer.</p>
+         <form id="adminForm" action="{% url 'create_offer' %}" method="post" onsubmit="return validatePasswords();">
             {% csrf_token %}
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname">
-            {% for error in form.firstname.errors %}
+             <label for="room">Room:</label>
+             {{ form.room }}
+            {% for error in form.room.errors %}
             <small style="color: red">{{ error }}</small>
             {% endfor %}
 
-            <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname">
-            {% for error in form.lastname.errors %}
+            <label for="discount_percentage">Discount:</label>
+            <input type="number" id="discount_percentage" name="discount_percentage">
+            {% for error in form.discount_percentage.errors %}
             <small style="color: red">{{ error }}</small>
             {% endfor %}
 
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
-            {% for error in form.username.errors %}
+             <label for="start_date">Start Date:</label>
+            <input type="datetime-local" id="start_date" name="start_date">
+            {% for error in form.start_date.errors %}
             <small style="color: red">{{ error }}</small>
             {% endfor %}
 
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email">
-            {% for error in form.email.errors %}
+             <label for="end_date">End Date:</label>
+            <input type="datetime-local" id="end_date" name="end_date">
+            {% for error in form.end_date.errors %}
             <small style="color: red">{{ error }}</small>
             {% endfor %}
 
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password">
-            {% for error in form.password.errors %}
+             <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Write a brief description..."></textarea>
+            {% for error in form.description.errors %}
             <small style="color: red">{{ error }}</small>
             {% endfor %}
             <input type="submit" value="Save">

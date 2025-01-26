@@ -148,3 +148,8 @@ window.onload = function() {
 function confirmLogout() {
       return confirm("Are you sure you want to log out?");
 }
+
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('hidden');
+}

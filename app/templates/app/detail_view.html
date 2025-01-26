@@ -1,0 +1,19 @@
+{% load static %}
+<head>
+    <link rel="icon" type="image/jpg" href="{% static '/images/navbar/SuiteDreams.png' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/detail.css' %}">
+    <title>Detail View</title>
+</head>
+<div class="offers">
+    <div class="offer-header">
+        <h2>Offer Details</h2>
+        <a href="{% url 'home' %}" class="back-button" onclick="return confirmBack();"><i class="ri-close-line"></i></a>
+    </div>
+    <p>{{ offer.room.room_type }}</p>
+    <p>{{ offer.description }}</p>
+    <p>{{ offer.discount_percentage }}%</p>
+    <p>{{ offer.start_date }}</p>
+    <p>{{ offer.end_date }}</p>
+</div>

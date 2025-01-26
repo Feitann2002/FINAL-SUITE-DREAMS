@@ -18,17 +18,19 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="id_rating" class="form-label">
-                    <i class="ri-star-fill"></i> Rating (1-5):
-                </label>
-                {{ form.rating }}
+                <label for="id_rating" class="form-label"><i class="ri-star-fill"></i> Rating (1-5):</label>
+                <input type="number" id="id_rating" name="rating">
+                {% for error in form.rating.errors %}
+                <small style="color: red">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <div class="form-group">
-                <label for="id_comments" class="form-label">
-                    <i class="ri-chat-1-fill"></i> Comments:
-                </label>
-                {{ form.comments }}
+                <label for="id_comments" class="form-label"><i class="ri-chat-1-fill"></i> Comments:</label>
+                <textarea name="comments" id="id_comments" cols="30" rows="10"></textarea>
+                {% for error in form.comments.errors %}
+                 <small style="color: red">{{ error }}</small>
+                {% endfor %}
             </div>
 
             <button type="submit" class="btn">Submit Feedback</button>

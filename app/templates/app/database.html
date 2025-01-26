@@ -12,24 +12,28 @@
 </head>
 <body onload="showDashboard()">
     <div class="container">
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
+             <div class="burger-menu" onclick="toggleSidebar()">
+                <i class='bx bx-menu'></i>
+            </div>
             <h2>Admin Dashboard <i class="ri-dashboard-fill"></i></h2>
             <div class="profile-container">
                 <img src="{% static '/images/about/SuiteDreams.png' %}" alt="Profile Picture" class="profile-picture">
+                <p><strong>Admin:</strong> {{ admin_username }}</p>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="showSection('dashboard')"><i class="ri-dashboard-fill"></i> Dashboard</a></li>
-                    <li><a href="#" onclick="showSection('admins')"><i class="ri-admin-fill"></i> Admins</a></li>
-                    <li><a href="#" onclick="showSection('users')"><i class="ri-user-fill"></i> Users</a></li>
-                    <li><a href="#" onclick="showSection('rooms')"><i class="ri-home-2-fill"></i> Rooms</a></li>
-                    <li><a href="#" onclick="showSection('appointments')"><i class="ri-book-fill"></i> Appointments</a></li>
-                    <li><a href="#" onclick="showSection('offers')"><i class="ri-box-3-fill"></i> Special Offers</a></li>
-                    <li><a href="#" onclick="showSection('feedbacks')"><i class="ri-feedback-fill"></i> Feedbacks</a></li>
+                    <li><a href="#" onclick="showSection('dashboard')"><i class="ri-dashboard-fill"></i> <text>Dashboard</text></a></li>
+                    <li><a href="#" onclick="showSection('admins')"><i class="ri-admin-fill"></i> <text>Admins</text></a></li>
+                    <li><a href="#" onclick="showSection('users')"><i class="ri-user-fill"></i> <text>Users</text></a></li>
+                    <li><a href="#" onclick="showSection('rooms')"><i class="ri-home-2-fill"></i> <text>Rooms</text></a></li>
+                    <li><a href="#" onclick="showSection('appointments')"><i class="ri-book-fill"></i> <text>Appointments</text></a></li>
+                    <li><a href="#" onclick="showSection('offers')"><i class="ri-box-3-fill"></i> <text>Special Offers</text></a></li>
+                    <li><a href="#" onclick="showSection('feedbacks')"><i class="ri-feedback-fill"></i> <text>Feedbacks</text></a></li>
                 </ul>
             </nav>
             <div class="logout-button">
-                <a href="/" class="logout" onclick="return confirmLogout()">Logout</a>
+                <a href="/" class="logout" onclick="return confirmLogout()"><i class="ri-logout-circle-line"></i><text>Logout</text></a>
             </div>
         </aside>
         <main class="main-content">
@@ -46,29 +50,53 @@
                 </div>
                 <div class="additional-cards">
                     <div class="card feature-suggestion">
-                        <h3>Activity Log</h3>
-                        <p>Recent activities and updates will be displayed here...</p>
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <h3>Appointment History</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Room Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                    <tr>
+                                        <td>{{ appointment.user.name }}</td>
+                                        <td>{{ appointment.room.room_type }}</td>
+                                        <td>{{ appointment.start_date }}</td>
+                                        <td>{{ appointment.end_date }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                         </table>
                     </div>
                     <div class="card recent-activities">
                         <h3>New Users</h3>
                         <table>
                             <thead>
-                                <th>Name</th>
-                                <th>Date Created</th>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Date Created</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            {% for user in users %}
-                                <tr>
-                                    <td>{{ user.name }}</td>
-                                    <td>{{ user.created_at}}</td>
-                                </tr>
-                             {% endfor %}
+                                {% for user in users %}
+                                    <tr>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.created_at }}</td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
-                        </table>
+                         </table>
                     </div>
                 </div>
             </section>
+
+            <!--------------------------------------------- Admin Section --------------------------------------------->
             <section id="admins" class="content-section" style="display: none;">
                 <h2>Admins List</h2>
                 <div class="search-container">
@@ -105,11 +133,13 @@
                     </tbody>
                 </table>
             </section>
+
+            <!---------------------------------------------- User Section --------------------------------------------->
             <section id="users" class="content-section" style="display: none;">
                 <h2>Users List</h2>
                 <div class="search-container">
                     <input type="text" id="userSearch" placeholder="Search Users..." onkeyup="searchUsers()">
-                    <button class="add-button" onclick="addUser()"><i class="ri-add-box-line"></i></button>
+                    <button class="add-button" onclick="window.location.href='{% url 'create_user' %}'"><i class="ri-add-box-line"></i></button>
                 </div>
                 <table>
                     <thead>
@@ -131,19 +161,21 @@
                             <td>{{ user.username }}</td>
                             <td>{{ user.password }}</td>
                             <td>
-                                <button class="edit-button" onclick="editUser({{ user.id }})"><i class="ri-edit-box-line"></i></button>
-                                <button class="delete-button" onclick="deleteUser({{ user.id }})"><i class="ri-delete-bin-line"></i></button>
+                                <button class="edit-button" onclick="window.location.href='{% url 'user_update' user.pk %}'"><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href='{% url 'user_delete' user.pk %}'"><i class="ri-delete-bin-line"></i></button>
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </section>
+
+            <!--------------------------------------------- Rooms Section --------------------------------------------->
             <section id="rooms" class="content-section" style="display: none;">
                 <h2>Rooms List</h2>
                 <div class="search-container">
                     <input type="text" id="roomSearch" placeholder="Search Rooms..." onkeyup="searchRooms()">
-                    <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+                    <button class="add-button" onclick="window.location.href='{% url 'create_room' %}'"><i class="ri-add-box-line"></i></button>
                 </div>
                 <table>
                     <thead>
@@ -165,8 +197,8 @@
                             <td>{{ room.capacity }}</td>
                             <td>₱ {{ room.price_per_hour|floatformat:2 }}</td>
                             <td>
-                                <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
-                                <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                                <button class="edit-button" onclick="window.location.href='{% url 'room_update' room.pk %}'"><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href='{% url 'room_delete' room.pk %}'"><i class="ri-delete-bin-line"></i></button>
                             </td>
                         </tr>
                         {% empty %}
@@ -177,11 +209,13 @@
                     </tbody>
                 </table>
             </section>
+
+            <!------------------------------------------ Appointment Section ------------------------------------------>
             <section id="appointments" class="content-section" style="display: none;">
                 <h2>Appointments List</h2>
                 <div class="search-container">
                     <input type="text" id="appointmentSearch" placeholder="Search Appointments..." onkeyup="searchAppointments()">
-                    <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+                    <button class="add-button" onclick="window.location.href='{% url 'create_appointment' %}'"><i class="ri-add-box-line"></i></button>
                 </div>
                 <table>
                     <thead>
@@ -205,8 +239,8 @@
                             <td>{{ appointment.end_date }}</td>
                             <td>₱ {{ appointment.total_cost|floatformat:2 }}</td>
                             <td>
-                                <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
-                                <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                                <button class="edit-button" onclick="window.location.href='{% url 'appointment_update' appointment.pk %}'"><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href='{% url 'appointment_delete' appointment.pk %}'"><i class="ri-delete-bin-line"></i></button>
                             </td>
                         </tr>
                         {% empty %}
@@ -217,11 +251,13 @@
                     </tbody>
                 </table>
             </section>
+
+            <!--------------------------------------------- Offer Section --------------------------------------------->
             <section id="offers" class="content-section" style="display: none;">
                 <h2>Special Offers</h2>
                 <div class="search-container">
                     <input type="text" id="offerSearch" placeholder="Search Offers..." onkeyup="searchOffers()">
-                    <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
+                    <button class="add-button" onclick="window.location.href='{% url 'create_offer' %}'"><i class="ri-add-box-line"></i></button>
                 </div>
                 <table>
                     <thead>
@@ -239,14 +275,21 @@
                         {% for offer in offers %}
                         <tr>
                             <td>{{ offer.id }}</td>
-                            <td>{{ offer.room.room_type }}</td>
+                            <td>{% for room in offer.room.all %}
+                                    {{ room.room_type }}
+                                        {% if not forloop.last %},
+                                        {% endif %}
+                                    {% empty %}
+                                    No rooms assigned
+                                {% endfor %}
+                            </td>
                             <td>{{ offer.description }}</td>
                             <td>{{ offer.start_date }}</td>
                             <td>{{ offer.end_date }}</td>
                             <td>{{ offer.discount_percentage }}%</td>
                             <td>
-                                <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
-                                <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
+                                <button class="edit-button" onclick="window.location.href='{% url 'offer_update' offer.pk %}'"><i class="ri-edit-box-line"></i></button>
+                                <button class="delete-button" onclick="window.location.href='{% url 'delete_offer' offer.pk %}'"><i class="ri-delete-bin-line"></i></button>
                             </td>
                         </tr>
                         {% empty %}
@@ -257,46 +300,55 @@
                     </tbody>
                 </table>
             </section>
-<section id="feedbacks" class="content-section" style="display: none;">
-    <h2>User Feedbacks</h2>
-    <div class="search-container">
-        <input type="text" id="feedbackSearch" placeholder="Search Feedbacks..." onkeyup="searchFeedbacks()">
-        <button class="add-button" onclick="window.location.href="><i class="ri-add-box-line"></i></button>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>User Name</th>
-                <th>Comments</th>
-                <th>Rating</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="feedbackTableBody">
-            {% for feedback in feedbacks %}
-            <tr>
-                <td>{{ feedback.id }}</td>
-                <td>{{ feedback.user.name }}</td>
-                <td>{{ feedback.comments }}</td>
-                <td>{{ feedback.rating }}</td>
-                <td>{{ feedback.created_at|date:"Y-m-d H:i" }}</td>
-                <td>
-                    <button class="edit-button" onclick="window.location.href="><i class="ri-edit-box-line"></i></button>
-                    <button class="delete-button" onclick="window.location.href="><i class="ri-delete-bin-line"></i></button>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6">No feedbacks found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</section>
+
+            <!-------------------------------------------- Feedback Section ------------------------------------------->
+            <section id="feedbacks" class="content-section" style="display: none;">
+                <h2>User Feedbacks</h2>
+                <div class="search-container">
+                    <input type="text" id="feedbackSearch" placeholder="Search Feedbacks..." onkeyup="searchFeedbacks()">
+                    <button class="add-button" onclick="window.location.href='{% url 'create_feedback' %}'"><i class="ri-add-box-line"></i></button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Name</th>
+                            <th>Comments</th>
+                            <th>Rating</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                            </tr>
+                    </thead>
+                    <tbody id="feedbackTableBody">
+                        {% for feedback in feedbacks %}
+                        <tr>
+                            <td>{{ feedback.id }}</td>
+                            <td>{{ feedback.user.name }}</td>
+                            <td>{{ feedback.comments }}</td>
+                            <td>{{ feedback.rating }}</td>
+                            <td>{{ feedback.created_at|date:"Y-m-d H:i" }}</td>
+                        <td>
+                            <button class="edit-button" onclick="window.location.href='{% url 'feedback_update' feedback.pk %}'"><i class="ri-edit-box-line"></i></button>
+                            <button class="delete-button" onclick="window.location.href='{% url 'delete_feed' feedback.pk %}'"><i class="ri-delete-bin-line"></i></button>
+
+                        </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6">No feedbacks found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
         </main>
     </div>
     <script src="{% static 'js/database.js' %}"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
